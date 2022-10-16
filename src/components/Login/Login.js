@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/UserContext';
 
 const Login = () => {
-    const {signIn}= useContext(AuthContext);
+    const {signIn, signInWithGoogle}= useContext(AuthContext);
     
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -11,6 +11,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        //sign in with mail and password
         signIn(email, password)
         .then(result =>{
             const user = result.user;
@@ -20,7 +21,15 @@ const Login = () => {
         .catch(error =>{
             console.error(error);
         })
-    
+    }
+ 
+    const handleGoogleSignIn = () =>{
+        signInWithGoogle()
+        .then((result)=>{
+            const user = result.user;
+            console.log(user);
+        })
+        .then((error) => console.log(error))
     }
     
 
@@ -48,9 +57,15 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                        <button className="btn btn-primary" type='submit'>Login</button>
+                        <button className="btn btn-primary " type='submit' >Login</button>
                         </div>
                     </form>
+                </div>
+                <p>Log in with one of the following</p>
+                <div className='flex flex-row gap-6'>
+                    <button className="btn btn-warning" type='submit' onClick={handleGoogleSignIn}>Google</button>
+                    <button className="btn btn-primary" type='submit'>Facebook</button>
+                    <button className="btn btn-dark" type='submit'>Github</button>
                 </div>
             </div>
         </div>
