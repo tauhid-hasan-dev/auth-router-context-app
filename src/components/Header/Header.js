@@ -13,7 +13,7 @@ const Header = () => {
                     <Link className="btn btn-ghost normal-case text-xl"  to='/home'>Home</Link>
                     <Link className="btn btn-ghost normal-case text-xl" to='login'>Login</Link>
                     <Link className="btn btn-ghost normal-case text-xl" to='/register'>Register</Link>
-                    {user?.displayName && <span className='text-xl text-success'>Welcome {user.displayName}!</span>}
+                    {user?.email && <span className='text-xl text-success'>Welcome {user.email}!</span>}
                </div>
             </div>
         
